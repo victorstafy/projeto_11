@@ -1,8 +1,10 @@
 import express from 'express';
-// import cors from 'cors';
+import cors from 'cors';
 
+// express.json()
 const server=express();
 server.use(express.json());
+server.use(cors());
 
 const tweets_list=[];
 let _user_avatar='';
@@ -10,7 +12,8 @@ let _user_avatar='';
 
 server.post('/sign-up',(req,res)=>{
     const user_profile=req.body;
-    _user_avatar=user_profile.avatar;
+    console.log(user_profile);
+    _user_avatar=(user_profile.avatar).slice();
     res.send('OK');
     console.log('post_sign-up');
 });
